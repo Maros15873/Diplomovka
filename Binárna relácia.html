@@ -14259,29 +14259,34 @@ a.anchor-link {
 
 <div class="jp-Cell-inputWrapper"><div class="jp-InputPrompt jp-InputArea-prompt">
 </div><div class="jp-RenderedHTMLCommon jp-RenderedMarkdown jp-MarkdownOutput " data-mime-type="text/markdown">
-<p><b>Binárna relácia</b></p>
-<p><p>Množinu R nazveme binárnou reláciou, ak jej jediné prvky sú usporiadané dvojice, t.j.</p>
-<b>∀x ∈ R ∃y ∃z x = (y, z).</b></p>
-<div>Príkladom takejto relácie je ľubovoľná podmnožina karteziánskeho súčinu A x B. V takomto prípade ju nazveme binárnou reláciou medzi prvkami  množín A a B (v tomto poradí) alebo tiež binárnou reláciou z množiny A do množiny B, tak hovoríme o relácii na množine A.</div>
+<h1 id="Bin&#225;rna-rel&#225;cia">Bin&#225;rna rel&#225;cia<a class="anchor-link" href="#Bin&#225;rna-rel&#225;cia">&#182;</a></h1><p>
+    Množinu R nazveme binárnou reláciou, ak jej jediné prvky sú usporiadané dvojice, t.j.
+</p><p>
+$$∀x ∈ R ∃y ∃z x = (y, z).$$
+</p><p>
+Príkladom takejto relácie je ľubovoľná podmnožina karteziánskeho súčinu A x B. V takomto prípade ju nazveme binárnou reláciou medzi prvkami  množín A a B (v tomto poradí) alebo tiež binárnou reláciou z množiny A do množiny B, tak hovoríme o relácii na množine A.
+</p>
 </div>
 </div><div class="jp-Cell jp-CodeCell jp-Notebook-cell jp-mod-noOutputs  ">
 <div class="jp-Cell-inputWrapper">
 <div class="jp-InputArea jp-Cell-inputArea">
-<div class="jp-InputPrompt jp-InputArea-prompt">In&nbsp;[148]:</div>
+<div class="jp-InputPrompt jp-InputArea-prompt">In&nbsp;[521]:</div>
 <div class="jp-CodeMirrorEditor jp-Editor jp-InputArea-editor" data-type="inline">
      <div class="CodeMirror cm-s-jupyter">
 <div class=" highlight hl-ipython3"><pre><span></span><span class="k">class</span> <span class="nc">BinaryRelation</span><span class="p">:</span>
     
-    <span class="k">def</span> <span class="fm">__init__</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">name</span><span class="o">=</span><span class="s2">&quot;R&quot;</span><span class="p">):</span>
+    <span class="k">def</span> <span class="fm">__init__</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span><span class="n">A</span><span class="o">=</span><span class="kc">None</span><span class="p">,</span><span class="n">B</span><span class="o">=</span><span class="kc">None</span><span class="p">,</span><span class="n">name</span><span class="o">=</span><span class="s2">&quot;R&quot;</span><span class="p">):</span>
         <span class="bp">self</span><span class="o">.</span><span class="n">name</span> <span class="o">=</span> <span class="n">name</span>
+        <span class="bp">self</span><span class="o">.</span><span class="n">A</span> <span class="o">=</span> <span class="n">A</span>
+        <span class="bp">self</span><span class="o">.</span><span class="n">B</span> <span class="o">=</span> <span class="n">B</span>
         <span class="bp">self</span><span class="o">.</span><span class="n">bRelation</span> <span class="o">=</span> <span class="nb">set</span><span class="p">()</span> <span class="c1">#binarna relacia</span>
         
     <span class="k">def</span> <span class="nf">setName</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">name</span><span class="p">):</span>
         <span class="bp">self</span><span class="o">.</span><span class="n">name</span> <span class="o">=</span> <span class="n">name</span>
         
     <span class="k">def</span> <span class="fm">__repr__</span><span class="p">(</span><span class="bp">self</span><span class="p">):</span>
-        <span class="n">dom</span> <span class="o">=</span> <span class="bp">self</span><span class="o">.</span><span class="n">dom</span><span class="p">()</span>
-        <span class="n">rng</span> <span class="o">=</span> <span class="bp">self</span><span class="o">.</span><span class="n">rng</span><span class="p">()</span>
+        <span class="n">dom</span> <span class="o">=</span> <span class="bp">self</span><span class="o">.</span><span class="n">getSetA</span><span class="p">()</span>
+        <span class="n">rng</span> <span class="o">=</span> <span class="bp">self</span><span class="o">.</span><span class="n">getSetB</span><span class="p">()</span>
         <span class="n">r</span> <span class="o">=</span> <span class="sa">f</span><span class="s2">&quot;</span><span class="si">{</span><span class="bp">self</span><span class="o">.</span><span class="n">name</span><span class="si">}</span><span class="s2"> = </span><span class="si">{</span><span class="bp">self</span><span class="o">.</span><span class="n">bRelation</span><span class="si">}</span><span class="se">\n</span><span class="s2">&quot;</span>
         <span class="n">matrix</span> <span class="o">=</span> <span class="bp">self</span><span class="o">.</span><span class="n">matrixRepresentation</span><span class="p">()</span>
         <span class="n">r</span> <span class="o">+=</span> <span class="sa">f</span><span class="s2">&quot;   </span><span class="si">{</span><span class="nb">str</span><span class="p">(</span><span class="n">rng</span><span class="p">)[</span><span class="mi">1</span><span class="p">:</span><span class="o">-</span><span class="mi">1</span><span class="p">]</span><span class="si">}</span><span class="se">\n</span><span class="s2">&quot;</span>
@@ -14291,6 +14296,12 @@ a.anchor-link {
             <span class="n">r</span> <span class="o">+=</span> <span class="sa">f</span><span class="s2">&quot;</span><span class="si">{</span><span class="n">dom</span><span class="p">[</span><span class="n">i</span><span class="p">]</span><span class="si">}</span><span class="s2"> </span><span class="si">{</span><span class="n">elem</span><span class="si">}</span><span class="se">\n</span><span class="s2">&quot;</span>
             <span class="n">i</span> <span class="o">+=</span> <span class="mi">1</span>
         <span class="k">return</span> <span class="n">r</span>
+    
+    <span class="k">def</span> <span class="nf">getSetA</span><span class="p">(</span><span class="bp">self</span><span class="p">):</span>
+        <span class="k">return</span> <span class="bp">self</span><span class="o">.</span><span class="n">A</span>
+    
+    <span class="k">def</span> <span class="nf">getSetB</span><span class="p">(</span><span class="bp">self</span><span class="p">):</span>
+        <span class="k">return</span> <span class="bp">self</span><span class="o">.</span><span class="n">B</span>
         
     <span class="k">def</span> <span class="nf">dom</span><span class="p">(</span><span class="bp">self</span><span class="p">):</span>
         <span class="n">dom</span> <span class="o">=</span> <span class="nb">set</span><span class="p">()</span>
@@ -14330,10 +14341,11 @@ a.anchor-link {
                     <span class="k">if</span> <span class="n">k</span> <span class="o">==</span> <span class="n">j</span><span class="p">:</span>
                         <span class="n">n</span><span class="o">.</span><span class="n">add</span><span class="p">((</span><span class="n">i</span><span class="p">,</span><span class="n">l</span><span class="p">))</span>
                         
-        <span class="n">comp</span> <span class="o">=</span> <span class="n">BinaryRelation</span><span class="p">()</span>
+        <span class="n">comp</span> <span class="o">=</span> <span class="n">BinaryRelation</span><span class="p">(</span><span class="bp">self</span><span class="o">.</span><span class="n">A</span><span class="p">,</span><span class="bp">self</span><span class="o">.</span><span class="n">B</span><span class="p">)</span>
         <span class="n">comp</span><span class="o">.</span><span class="n">bRelation</span> <span class="o">=</span> <span class="n">n</span>
         
         <span class="k">return</span> <span class="n">comp</span>
+        
         
     <span class="k">def</span> <span class="nf">converse</span><span class="p">(</span><span class="bp">self</span><span class="p">):</span>
         <span class="n">n</span> <span class="o">=</span> <span class="nb">set</span><span class="p">()</span>
@@ -14342,7 +14354,7 @@ a.anchor-link {
             <span class="n">i</span><span class="p">,</span><span class="n">j</span> <span class="o">=</span> <span class="n">e</span>
             <span class="n">n</span><span class="o">.</span><span class="n">add</span><span class="p">((</span><span class="n">j</span><span class="p">,</span><span class="n">i</span><span class="p">))</span>
         
-        <span class="n">comp</span> <span class="o">=</span> <span class="n">BinaryRelation</span><span class="p">()</span>
+        <span class="n">comp</span> <span class="o">=</span> <span class="n">BinaryRelation</span><span class="p">(</span><span class="bp">self</span><span class="o">.</span><span class="n">A</span><span class="p">,</span><span class="bp">self</span><span class="o">.</span><span class="n">B</span><span class="p">)</span>
         <span class="n">comp</span><span class="o">.</span><span class="n">bRelation</span> <span class="o">=</span> <span class="n">n</span>
         
         <span class="k">return</span> <span class="n">comp</span>
@@ -14351,32 +14363,33 @@ a.anchor-link {
     <span class="k">def</span> <span class="nf">complement</span><span class="p">(</span><span class="bp">self</span><span class="p">):</span>
         <span class="n">n</span> <span class="o">=</span> <span class="nb">set</span><span class="p">()</span>
         
-        <span class="k">for</span> <span class="n">i</span> <span class="ow">in</span> <span class="bp">self</span><span class="o">.</span><span class="n">dom</span><span class="p">():</span>
-            <span class="k">for</span> <span class="n">j</span> <span class="ow">in</span> <span class="bp">self</span><span class="o">.</span><span class="n">rng</span><span class="p">():</span>
+        <span class="k">for</span> <span class="n">i</span> <span class="ow">in</span> <span class="bp">self</span><span class="o">.</span><span class="n">getSetA</span><span class="p">():</span>
+            <span class="k">for</span> <span class="n">j</span> <span class="ow">in</span> <span class="bp">self</span><span class="o">.</span><span class="n">getSetB</span><span class="p">():</span>
                 <span class="k">if</span> <span class="p">(</span><span class="n">i</span><span class="p">,</span><span class="n">j</span><span class="p">)</span> <span class="ow">not</span> <span class="ow">in</span> <span class="bp">self</span><span class="o">.</span><span class="n">bRelation</span><span class="p">:</span>
                     <span class="n">n</span><span class="o">.</span><span class="n">add</span><span class="p">((</span><span class="n">i</span><span class="p">,</span><span class="n">j</span><span class="p">))</span>
                     
-        <span class="n">comp</span> <span class="o">=</span> <span class="n">BinaryRelation</span><span class="p">()</span>
+        <span class="n">comp</span> <span class="o">=</span> <span class="n">BinaryRelation</span><span class="p">(</span><span class="bp">self</span><span class="o">.</span><span class="n">A</span><span class="p">,</span><span class="bp">self</span><span class="o">.</span><span class="n">B</span><span class="p">)</span>
         <span class="n">comp</span><span class="o">.</span><span class="n">bRelation</span> <span class="o">=</span> <span class="n">n</span>
         
         <span class="k">return</span> <span class="n">comp</span>
         
     <span class="k">def</span> <span class="nf">restriction</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">S</span><span class="p">):</span>
-        <span class="n">inter</span> <span class="o">=</span> <span class="bp">self</span><span class="o">.</span><span class="n">intersection</span><span class="p">(</span><span class="n">S</span><span class="p">)</span>
+        <span class="n">inter</span> <span class="o">=</span> <span class="bp">self</span><span class="o">.</span><span class="n">getSetA</span><span class="p">()</span><span class="o">.</span><span class="n">intersection</span><span class="p">(</span><span class="n">S</span><span class="p">)</span>
         <span class="n">n</span> <span class="o">=</span> <span class="nb">set</span><span class="p">()</span>
         
         <span class="k">for</span> <span class="n">elem</span> <span class="ow">in</span> <span class="bp">self</span><span class="o">.</span><span class="n">bRelation</span><span class="p">:</span>
-            <span class="k">if</span> <span class="n">elem</span> <span class="ow">not</span> <span class="ow">in</span> <span class="n">inter</span><span class="p">:</span>
+            <span class="n">i</span><span class="p">,</span><span class="n">j</span> <span class="o">=</span> <span class="n">elem</span>
+            <span class="k">if</span> <span class="n">i</span> <span class="ow">in</span> <span class="n">inter</span> <span class="ow">and</span> <span class="n">j</span> <span class="ow">in</span> <span class="n">inter</span><span class="p">:</span>
                 <span class="n">n</span><span class="o">.</span><span class="n">add</span><span class="p">(</span><span class="n">elem</span><span class="p">)</span>
                 
-        <span class="n">res</span> <span class="o">=</span> <span class="n">BinaryRelation</span><span class="p">()</span>
+        <span class="n">res</span> <span class="o">=</span> <span class="n">BinaryRelation</span><span class="p">(</span><span class="bp">self</span><span class="o">.</span><span class="n">A</span><span class="p">,</span><span class="bp">self</span><span class="o">.</span><span class="n">A</span><span class="p">)</span>
         <span class="n">res</span><span class="o">.</span><span class="n">bRelation</span> <span class="o">=</span> <span class="n">n</span>
         
         <span class="k">return</span> <span class="n">res</span>
         
     <span class="k">def</span> <span class="nf">matrixRepresentation</span><span class="p">(</span><span class="bp">self</span><span class="p">):</span>
-        <span class="n">dom</span> <span class="o">=</span> <span class="bp">self</span><span class="o">.</span><span class="n">dom</span><span class="p">()</span>
-        <span class="n">rng</span> <span class="o">=</span> <span class="bp">self</span><span class="o">.</span><span class="n">rng</span><span class="p">()</span>
+        <span class="n">dom</span> <span class="o">=</span> <span class="bp">self</span><span class="o">.</span><span class="n">getSetA</span><span class="p">()</span>
+        <span class="n">rng</span> <span class="o">=</span> <span class="bp">self</span><span class="o">.</span><span class="n">getSetB</span><span class="p">()</span>
         <span class="n">matrix</span> <span class="o">=</span>  <span class="p">[[</span><span class="mi">0</span> <span class="k">for</span> <span class="n">col</span> <span class="ow">in</span> <span class="nb">range</span><span class="p">(</span><span class="nb">len</span><span class="p">(</span><span class="n">rng</span><span class="p">))]</span> <span class="k">for</span> <span class="n">row</span> <span class="ow">in</span> <span class="nb">range</span><span class="p">(</span><span class="nb">len</span><span class="p">(</span><span class="n">dom</span><span class="p">))]</span>
         <span class="n">dom</span> <span class="o">=</span> <span class="nb">list</span><span class="p">(</span><span class="n">dom</span><span class="p">)</span>
         <span class="n">rng</span> <span class="o">=</span> <span class="nb">list</span><span class="p">(</span><span class="n">rng</span><span class="p">)</span>
@@ -14384,6 +14397,51 @@ a.anchor-link {
             <span class="n">i</span><span class="p">,</span><span class="n">j</span> <span class="o">=</span> <span class="n">elem</span>
             <span class="n">matrix</span><span class="p">[</span><span class="n">dom</span><span class="o">.</span><span class="n">index</span><span class="p">(</span><span class="n">i</span><span class="p">)][</span><span class="n">rng</span><span class="o">.</span><span class="n">index</span><span class="p">(</span><span class="n">j</span><span class="p">)]</span> <span class="o">=</span> <span class="mi">1</span>
         <span class="k">return</span> <span class="n">matrix</span>
+    
+    <span class="k">def</span> <span class="nf">isReflexive</span><span class="p">(</span><span class="bp">self</span><span class="p">):</span>
+        <span class="k">for</span> <span class="n">elem</span> <span class="ow">in</span> <span class="bp">self</span><span class="o">.</span><span class="n">bRelation</span><span class="p">:</span>
+            <span class="n">a</span><span class="p">,</span><span class="n">b</span> <span class="o">=</span> <span class="n">elem</span>
+            <span class="k">if</span> <span class="p">(</span><span class="n">a</span><span class="p">,</span><span class="n">a</span><span class="p">)</span> <span class="ow">not</span> <span class="ow">in</span> <span class="bp">self</span><span class="o">.</span><span class="n">bRelation</span> <span class="ow">or</span> <span class="p">(</span><span class="n">b</span><span class="p">,</span><span class="n">b</span><span class="p">)</span> <span class="ow">not</span> <span class="ow">in</span> <span class="bp">self</span><span class="o">.</span><span class="n">bRelation</span><span class="p">:</span>
+                <span class="k">return</span> <span class="kc">False</span>
+        <span class="k">return</span> <span class="kc">True</span>
+    
+    <span class="k">def</span> <span class="nf">isSymetric</span><span class="p">(</span><span class="bp">self</span><span class="p">):</span>
+        <span class="k">for</span> <span class="n">elem</span> <span class="ow">in</span> <span class="bp">self</span><span class="o">.</span><span class="n">bRelation</span><span class="p">:</span>
+            <span class="n">a</span><span class="p">,</span><span class="n">b</span> <span class="o">=</span> <span class="n">elem</span>
+            <span class="k">if</span> <span class="p">(</span><span class="n">b</span><span class="p">,</span><span class="n">a</span><span class="p">)</span> <span class="ow">not</span> <span class="ow">in</span> <span class="bp">self</span><span class="o">.</span><span class="n">bRelation</span><span class="p">:</span>
+                <span class="k">return</span> <span class="kc">False</span>
+        <span class="k">return</span> <span class="kc">True</span>
+        
+    <span class="k">def</span> <span class="nf">isAntisymetric</span><span class="p">(</span><span class="bp">self</span><span class="p">):</span>
+        <span class="k">for</span> <span class="n">elem</span> <span class="ow">in</span> <span class="bp">self</span><span class="o">.</span><span class="n">bRelation</span><span class="p">:</span>
+            <span class="n">a</span><span class="p">,</span><span class="n">b</span> <span class="o">=</span> <span class="n">elem</span>
+            <span class="k">if</span> <span class="p">(</span><span class="n">b</span><span class="p">,</span><span class="n">a</span><span class="p">)</span> <span class="ow">in</span> <span class="bp">self</span><span class="o">.</span><span class="n">bRelation</span> <span class="ow">and</span> <span class="p">(</span><span class="n">a</span> <span class="o">!=</span> <span class="n">b</span><span class="p">):</span>
+                <span class="k">return</span> <span class="kc">False</span>
+        <span class="k">return</span> <span class="kc">True</span>
+    
+    <span class="k">def</span> <span class="nf">isTransitive</span><span class="p">(</span><span class="bp">self</span><span class="p">):</span>
+        
+        <span class="k">def</span> <span class="nf">relationWith</span><span class="p">():</span>
+            <span class="n">d</span> <span class="o">=</span> <span class="nb">dict</span><span class="p">()</span>
+            <span class="k">for</span> <span class="n">elem</span> <span class="ow">in</span> <span class="bp">self</span><span class="o">.</span><span class="n">bRelation</span><span class="p">:</span>
+                <span class="n">a</span><span class="p">,</span><span class="n">b</span> <span class="o">=</span> <span class="n">elem</span>
+                <span class="k">if</span> <span class="n">a</span> <span class="ow">in</span> <span class="n">d</span><span class="o">.</span><span class="n">keys</span><span class="p">():</span>
+                    <span class="n">d</span><span class="p">[</span><span class="n">a</span><span class="p">]</span><span class="o">.</span><span class="n">add</span><span class="p">(</span><span class="n">b</span><span class="p">)</span>
+                <span class="k">else</span><span class="p">:</span>
+                    <span class="n">d</span><span class="p">[</span><span class="n">a</span><span class="p">]</span> <span class="o">=</span> <span class="p">{</span><span class="n">b</span><span class="p">}</span>
+                <span class="k">if</span> <span class="n">b</span> <span class="ow">in</span> <span class="n">d</span><span class="o">.</span><span class="n">keys</span><span class="p">():</span>
+                    <span class="k">pass</span>
+                <span class="k">else</span><span class="p">:</span>
+                    <span class="n">d</span><span class="p">[</span><span class="n">b</span><span class="p">]</span> <span class="o">=</span> <span class="nb">set</span><span class="p">()</span>
+            <span class="k">return</span> <span class="n">d</span>
+        
+        <span class="n">d</span> <span class="o">=</span> <span class="n">relationWith</span><span class="p">()</span>
+        <span class="k">for</span> <span class="n">elem</span> <span class="ow">in</span> <span class="bp">self</span><span class="o">.</span><span class="n">bRelation</span><span class="p">:</span>
+            <span class="n">a</span><span class="p">,</span><span class="n">b</span> <span class="o">=</span> <span class="n">elem</span>
+            <span class="k">for</span> <span class="n">e</span> <span class="ow">in</span> <span class="n">d</span><span class="p">[</span><span class="n">b</span><span class="p">]:</span>
+                <span class="k">if</span> <span class="n">e</span> <span class="ow">not</span> <span class="ow">in</span> <span class="n">d</span><span class="p">[</span><span class="n">a</span><span class="p">]:</span>
+                    <span class="k">return</span> <span class="kc">False</span>
+        <span class="k">return</span> <span class="kc">True</span>
         
 </pre></div>
 
@@ -14392,15 +14450,65 @@ a.anchor-link {
 </div>
 </div>
 
+</div><div class="jp-Cell jp-CodeCell jp-Notebook-cell jp-mod-noOutputs  ">
+<div class="jp-Cell-inputWrapper">
+<div class="jp-InputArea jp-Cell-inputArea">
+<div class="jp-InputPrompt jp-InputArea-prompt">In&nbsp;[522]:</div>
+<div class="jp-CodeMirrorEditor jp-Editor jp-InputArea-editor" data-type="inline">
+     <div class="CodeMirror cm-s-jupyter">
+<div class=" highlight hl-ipython3"><pre><span></span><span class="kn">from</span> <span class="nn">graphviz</span> <span class="kn">import</span> <span class="n">Digraph</span>
+<span class="kn">from</span> <span class="nn">IPython.display</span> <span class="kn">import</span> <span class="n">IFrame</span><span class="p">,</span> <span class="n">display</span>
+
+<span class="k">def</span> <span class="nf">makeGraph</span><span class="p">(</span><span class="n">relation</span><span class="p">,</span><span class="n">name</span><span class="o">=</span><span class="s2">&quot;graph&quot;</span><span class="p">,</span><span class="n">filename</span><span class="o">=</span><span class="s1">&#39;cluster.gv&#39;</span><span class="p">):</span>
+    <span class="n">g</span> <span class="o">=</span> <span class="n">Digraph</span><span class="p">(</span><span class="n">name</span><span class="o">=</span><span class="n">name</span><span class="p">,</span> <span class="n">node_attr</span><span class="o">=</span><span class="p">{</span><span class="s1">&#39;shape&#39;</span><span class="p">:</span> <span class="s1">&#39;plaintext&#39;</span><span class="p">})</span>
+    <span class="n">g</span><span class="o">.</span><span class="n">body</span><span class="o">.</span><span class="n">append</span><span class="p">(</span><span class="sa">f</span><span class="s1">&#39;</span><span class="se">\t</span><span class="s1"> label=&quot;</span><span class="si">{</span><span class="n">relation</span><span class="o">.</span><span class="n">name</span><span class="si">}</span><span class="s1">&quot;&#39;</span><span class="p">)</span>
+    <span class="n">g</span><span class="o">.</span><span class="n">body</span><span class="o">.</span><span class="n">append</span><span class="p">(</span><span class="s1">&#39;</span><span class="se">\t</span><span class="s1"> rankdir=LR;&#39;</span><span class="p">)</span>
+    
+    <span class="k">with</span> <span class="n">g</span><span class="o">.</span><span class="n">subgraph</span><span class="p">(</span><span class="n">name</span><span class="o">=</span><span class="s1">&#39;cluster_dom&#39;</span><span class="p">,</span> <span class="n">node_attr</span><span class="o">=</span><span class="p">{</span><span class="s1">&#39;shape&#39;</span> <span class="p">:</span> <span class="s1">&#39;circle&#39;</span><span class="p">})</span> <span class="k">as</span> <span class="n">a</span><span class="p">:</span>
+        <span class="n">a</span><span class="o">.</span><span class="n">body</span><span class="o">.</span><span class="n">append</span><span class="p">(</span><span class="s1">&#39;</span><span class="se">\t</span><span class="s1"> label=&quot;A&quot;&#39;</span><span class="p">)</span>
+        <span class="k">for</span> <span class="n">elem</span> <span class="ow">in</span> <span class="n">relation</span><span class="o">.</span><span class="n">getSetA</span><span class="p">():</span>
+            <span class="n">a</span><span class="o">.</span><span class="n">node</span><span class="p">(</span><span class="nb">str</span><span class="p">(</span><span class="n">elem</span><span class="p">))</span>
+    
+    <span class="k">with</span> <span class="n">g</span><span class="o">.</span><span class="n">subgraph</span><span class="p">(</span><span class="n">name</span><span class="o">=</span><span class="s1">&#39;cluster_rng&#39;</span><span class="p">,</span> <span class="n">node_attr</span><span class="o">=</span><span class="p">{</span><span class="s1">&#39;shape&#39;</span> <span class="p">:</span> <span class="s1">&#39;circle&#39;</span><span class="p">})</span> <span class="k">as</span> <span class="n">b</span><span class="p">:</span>
+        <span class="n">b</span><span class="o">.</span><span class="n">body</span><span class="o">.</span><span class="n">append</span><span class="p">(</span><span class="s1">&#39;</span><span class="se">\t</span><span class="s1"> label=&quot;B&quot;&#39;</span><span class="p">)</span>
+        <span class="k">for</span> <span class="n">elem</span> <span class="ow">in</span> <span class="n">relation</span><span class="o">.</span><span class="n">getSetB</span><span class="p">():</span>
+            <span class="n">b</span><span class="o">.</span><span class="n">node</span><span class="p">(</span><span class="nb">str</span><span class="p">(</span><span class="n">elem</span><span class="p">)</span><span class="o">+</span><span class="s2">&quot;R&quot;</span><span class="p">,</span><span class="nb">str</span><span class="p">(</span><span class="n">elem</span><span class="p">))</span>
+            <span class="c1">#node(name, label=None, _attributes=None, **attrs)</span>
+           
+    <span class="k">for</span> <span class="n">elem</span> <span class="ow">in</span> <span class="n">relation</span><span class="o">.</span><span class="n">bRelation</span><span class="p">:</span>
+        <span class="n">a</span><span class="p">,</span><span class="n">b</span> <span class="o">=</span> <span class="n">elem</span>
+        <span class="n">g</span><span class="o">.</span><span class="n">edge</span><span class="p">(</span><span class="nb">str</span><span class="p">(</span><span class="n">a</span><span class="p">),</span><span class="nb">str</span><span class="p">(</span><span class="n">b</span><span class="p">)</span><span class="o">+</span><span class="s2">&quot;R&quot;</span><span class="p">)</span>
+        
+    <span class="k">return</span> <span class="n">g</span>
+</pre></div>
+
+     </div>
+</div>
+</div>
+</div>
+
 </div><div class="jp-Cell jp-CodeCell jp-Notebook-cell   ">
 <div class="jp-Cell-inputWrapper">
 <div class="jp-InputArea jp-Cell-inputArea">
-<div class="jp-InputPrompt jp-InputArea-prompt">In&nbsp;[149]:</div>
+<div class="jp-InputPrompt jp-InputArea-prompt">In&nbsp;[523]:</div>
 <div class="jp-CodeMirrorEditor jp-Editor jp-InputArea-editor" data-type="inline">
      <div class="CodeMirror cm-s-jupyter">
-<div class=" highlight hl-ipython3"><pre><span></span><span class="n">b</span> <span class="o">=</span> <span class="n">BinaryRelation</span><span class="p">(</span><span class="s2">&quot;R&quot;</span><span class="p">)</span>
-<span class="n">b</span><span class="o">.</span><span class="n">bRelation</span> <span class="o">=</span> <span class="p">{(</span><span class="mi">1</span><span class="p">,</span><span class="mi">4</span><span class="p">),(</span><span class="mi">1</span><span class="p">,</span><span class="mi">7</span><span class="p">),(</span><span class="mi">2</span><span class="p">,</span><span class="mi">5</span><span class="p">),(</span><span class="mi">3</span><span class="p">,</span><span class="mi">4</span><span class="p">)}</span>
+<div class=" highlight hl-ipython3"><pre><span></span><span class="n">A</span> <span class="o">=</span> <span class="p">{</span><span class="mi">1</span><span class="p">,</span><span class="mi">2</span><span class="p">,</span><span class="mi">3</span><span class="p">,</span><span class="mi">4</span><span class="p">,</span><span class="mi">5</span><span class="p">}</span> 
+<span class="n">B</span> <span class="o">=</span> <span class="p">{</span><span class="mi">1</span><span class="p">,</span><span class="mi">2</span><span class="p">,</span><span class="mi">3</span><span class="p">,</span><span class="mi">4</span><span class="p">,</span><span class="mi">5</span><span class="p">}</span>
+<span class="n">b</span> <span class="o">=</span> <span class="n">BinaryRelation</span><span class="p">(</span><span class="n">A</span><span class="p">,</span><span class="n">B</span><span class="p">,</span><span class="s2">&quot;R(A→B)&quot;</span><span class="p">)</span>
+<span class="n">b</span><span class="o">.</span><span class="n">bRelation</span> <span class="o">=</span> <span class="p">{(</span><span class="mi">1</span><span class="p">,</span><span class="mi">3</span><span class="p">),(</span><span class="mi">2</span><span class="p">,</span><span class="mi">3</span><span class="p">),(</span><span class="mi">2</span><span class="p">,</span><span class="mi">4</span><span class="p">),(</span><span class="mi">3</span><span class="p">,</span><span class="mi">5</span><span class="p">),(</span><span class="mi">3</span><span class="p">,</span><span class="mi">2</span><span class="p">),(</span><span class="mi">3</span><span class="p">,</span><span class="mi">4</span><span class="p">),(</span><span class="mi">4</span><span class="p">,</span><span class="mi">4</span><span class="p">)}</span>
 <span class="nb">print</span><span class="p">(</span><span class="n">b</span><span class="p">)</span>
+<span class="nb">print</span><span class="p">(</span><span class="sa">f</span><span class="s2">&quot;reflexive: </span><span class="si">{</span><span class="n">b</span><span class="o">.</span><span class="n">isReflexive</span><span class="p">()</span><span class="si">}</span><span class="s2">&quot;</span><span class="p">)</span>
+<span class="nb">print</span><span class="p">(</span><span class="sa">f</span><span class="s2">&quot;symetric: </span><span class="si">{</span><span class="n">b</span><span class="o">.</span><span class="n">isSymetric</span><span class="p">()</span><span class="si">}</span><span class="s2">&quot;</span><span class="p">)</span>
+<span class="nb">print</span><span class="p">(</span><span class="sa">f</span><span class="s2">&quot;antisymetric: </span><span class="si">{</span><span class="n">b</span><span class="o">.</span><span class="n">isAntisymetric</span><span class="p">()</span><span class="si">}</span><span class="s2">&quot;</span><span class="p">)</span>
+<span class="nb">print</span><span class="p">(</span><span class="sa">f</span><span class="s2">&quot;transitive: </span><span class="si">{</span><span class="n">b</span><span class="o">.</span><span class="n">isTransitive</span><span class="p">()</span><span class="si">}</span><span class="s2">&quot;</span><span class="p">)</span>
+
+
+<span class="n">g</span> <span class="o">=</span> <span class="n">makeGraph</span><span class="p">(</span><span class="n">b</span><span class="p">,</span><span class="s2">&quot;graph_01&quot;</span><span class="p">)</span>
+<span class="c1">#print(g.source)</span>
+<span class="n">g</span><span class="o">.</span><span class="n">view</span><span class="p">()</span>
+
+<span class="n">IFrame</span><span class="p">(</span><span class="s2">&quot;graph_01.gv.pdf&quot;</span><span class="p">,</span> <span class="n">width</span><span class="o">=</span><span class="mi">400</span><span class="p">,</span> <span class="n">height</span><span class="o">=</span><span class="mi">800</span><span class="p">)</span>
 </pre></div>
 
      </div>
@@ -14420,70 +14528,76 @@ a.anchor-link {
 
 
 <div class="jp-RenderedText jp-OutputArea-output" data-mime-type="text/plain">
-<pre>R = {(1, 7), (2, 5), (3, 4), (1, 4)}
-   4, 5, 7
-1 [1, 0, 1]
-2 [0, 1, 0]
-3 [1, 0, 0]
+<pre>R(A→B) = {(4, 4), (2, 4), (3, 4), (2, 3), (3, 2), (1, 3), (3, 5)}
+   1, 2, 3, 4, 5
+1 [0, 0, 1, 0, 0]
+2 [0, 0, 1, 1, 0]
+3 [0, 1, 0, 1, 1]
+4 [0, 0, 0, 1, 0]
+5 [0, 0, 0, 0, 0]
 
+reflexive: False
+symetric: False
+antisymetric: False
+transitive: False
 </pre>
 </div>
 </div>
-
-</div>
-
-</div>
-
-</div><div class="jp-Cell jp-CodeCell jp-Notebook-cell   ">
-<div class="jp-Cell-inputWrapper">
-<div class="jp-InputArea jp-Cell-inputArea">
-<div class="jp-InputPrompt jp-InputArea-prompt">In&nbsp;[151]:</div>
-<div class="jp-CodeMirrorEditor jp-Editor jp-InputArea-editor" data-type="inline">
-     <div class="CodeMirror cm-s-jupyter">
-<div class=" highlight hl-ipython3"><pre><span></span><span class="n">bb</span> <span class="o">=</span> <span class="n">BinaryRelation</span><span class="p">(</span><span class="s2">&quot;Rs&quot;</span><span class="p">)</span>
-<span class="n">bb</span><span class="o">.</span><span class="n">bRelation</span> <span class="o">=</span> <span class="p">{(</span><span class="mi">1</span><span class="p">,</span><span class="mi">4</span><span class="p">),(</span><span class="mi">3</span><span class="p">,</span><span class="mi">4</span><span class="p">)}</span>
-<span class="nb">print</span><span class="p">(</span><span class="n">b</span><span class="o">.</span><span class="n">restriction</span><span class="p">(</span><span class="n">bb</span><span class="p">))</span>
-</pre></div>
-
-     </div>
-</div>
-</div>
-</div>
-
-<div class="jp-Cell-outputWrapper">
-
-
-<div class="jp-OutputArea jp-Cell-outputArea">
 
 <div class="jp-OutputArea-child">
 
     
-    <div class="jp-OutputPrompt jp-OutputArea-prompt"></div>
+    <div class="jp-OutputPrompt jp-OutputArea-prompt">Out[523]:</div>
 
 
-<div class="jp-RenderedText jp-OutputArea-output" data-mime-type="text/plain">
-<pre>R = {(1, 7), (2, 5)}
-   5, 7
-1 [0, 1]
-2 [1, 0]
 
-</pre>
+<div class="jp-RenderedHTMLCommon jp-RenderedHTML jp-OutputArea-output jp-OutputArea-executeResult" data-mime-type="text/html">
+
+        <iframe
+            width="400"
+            height="800"
+            src="graph_01.gv.pdf"
+            frameborder="0"
+            allowfullscreen
+        ></iframe>
+        
 </div>
-</div>
 
 </div>
 
 </div>
 
+</div>
+
+</div>
+<div class="jp-Cell-inputWrapper"><div class="jp-InputPrompt jp-InputArea-prompt">
+</div><div class="jp-RenderedHTMLCommon jp-RenderedMarkdown jp-MarkdownOutput " data-mime-type="text/markdown">
+<h2 id="Complement">Complement<a class="anchor-link" href="#Complement">&#182;</a></h2><p>
+Ak R je binárna relácia z množiny A do množiny B potom:
+</p><p>
+$$ R = \{(x, y) | ¬ xRy\} $$
+</p><p>
+je complement R.
+</p>
+</div>
 </div><div class="jp-Cell jp-CodeCell jp-Notebook-cell   ">
 <div class="jp-Cell-inputWrapper">
 <div class="jp-InputArea jp-Cell-inputArea">
-<div class="jp-InputPrompt jp-InputArea-prompt">In&nbsp;[138]:</div>
+<div class="jp-InputPrompt jp-InputArea-prompt">In&nbsp;[524]:</div>
 <div class="jp-CodeMirrorEditor jp-Editor jp-InputArea-editor" data-type="inline">
      <div class="CodeMirror cm-s-jupyter">
-<div class=" highlight hl-ipython3"><pre><span></span><span class="n">compl</span> <span class="o">=</span> <span class="n">b</span><span class="o">.</span><span class="n">complement</span><span class="p">()</span>
+<div class=" highlight hl-ipython3"><pre><span></span><span class="n">A</span> <span class="o">=</span> <span class="p">{</span><span class="mi">1</span><span class="p">,</span><span class="mi">2</span><span class="p">,</span><span class="mi">3</span><span class="p">,</span><span class="mi">4</span><span class="p">,</span><span class="mi">5</span><span class="p">}</span> 
+<span class="n">B</span> <span class="o">=</span> <span class="p">{</span><span class="mi">1</span><span class="p">,</span><span class="mi">2</span><span class="p">,</span><span class="mi">3</span><span class="p">,</span><span class="mi">4</span><span class="p">,</span><span class="mi">5</span><span class="p">}</span>
+<span class="n">b</span> <span class="o">=</span> <span class="n">BinaryRelation</span><span class="p">(</span><span class="n">A</span><span class="p">,</span><span class="n">B</span><span class="p">,</span><span class="s2">&quot;R(A-&gt;B)&quot;</span><span class="p">)</span>
+<span class="n">b</span><span class="o">.</span><span class="n">bRelation</span> <span class="o">=</span> <span class="p">{(</span><span class="mi">1</span><span class="p">,</span><span class="mi">3</span><span class="p">),(</span><span class="mi">2</span><span class="p">,</span><span class="mi">3</span><span class="p">),(</span><span class="mi">2</span><span class="p">,</span><span class="mi">4</span><span class="p">),(</span><span class="mi">5</span><span class="p">,</span><span class="mi">2</span><span class="p">),(</span><span class="mi">3</span><span class="p">,</span><span class="mi">5</span><span class="p">),(</span><span class="mi">4</span><span class="p">,</span><span class="mi">1</span><span class="p">)}</span>
+
+<span class="n">compl</span> <span class="o">=</span> <span class="n">b</span><span class="o">.</span><span class="n">complement</span><span class="p">()</span>
 <span class="n">compl</span><span class="o">.</span><span class="n">setName</span><span class="p">(</span><span class="s2">&quot;R comlement&quot;</span><span class="p">)</span>
 <span class="nb">print</span><span class="p">(</span><span class="n">compl</span><span class="p">)</span>
+
+<span class="n">g</span> <span class="o">=</span> <span class="n">makeGraph</span><span class="p">(</span><span class="n">compl</span><span class="p">,</span><span class="s2">&quot;graph_02&quot;</span><span class="p">)</span>
+<span class="n">g</span><span class="o">.</span><span class="n">view</span><span class="p">()</span>
+<span class="n">IFrame</span><span class="p">(</span><span class="s2">&quot;graph_02.gv.pdf&quot;</span><span class="p">,</span> <span class="n">width</span><span class="o">=</span><span class="mi">400</span><span class="p">,</span> <span class="n">height</span><span class="o">=</span><span class="mi">800</span><span class="p">)</span>
 </pre></div>
 
      </div>
@@ -14503,14 +14617,37 @@ a.anchor-link {
 
 
 <div class="jp-RenderedText jp-OutputArea-output" data-mime-type="text/plain">
-<pre>R comlement = {(2, 4), (2, 7), (1, 5), (3, 7), (3, 5)}
-   4, 5, 7
-1 [0, 1, 0]
-2 [1, 0, 1]
-3 [0, 1, 1]
+<pre>R comlement = {(3, 4), (4, 3), (3, 1), (5, 4), (5, 1), (2, 2), (2, 5), (4, 2), (4, 5), (3, 3), (5, 3), (1, 2), (2, 1), (1, 5), (3, 2), (4, 4), (5, 5), (1, 1), (1, 4)}
+   1, 2, 3, 4, 5
+1 [1, 1, 0, 1, 1]
+2 [1, 1, 0, 0, 1]
+3 [1, 1, 1, 1, 0]
+4 [0, 1, 1, 1, 1]
+5 [1, 0, 1, 1, 1]
 
 </pre>
 </div>
+</div>
+
+<div class="jp-OutputArea-child">
+
+    
+    <div class="jp-OutputPrompt jp-OutputArea-prompt">Out[524]:</div>
+
+
+
+<div class="jp-RenderedHTMLCommon jp-RenderedHTML jp-OutputArea-output jp-OutputArea-executeResult" data-mime-type="text/html">
+
+        <iframe
+            width="400"
+            height="800"
+            src="graph_02.gv.pdf"
+            frameborder="0"
+            allowfullscreen
+        ></iframe>
+        
+</div>
+
 </div>
 
 </div>
@@ -14520,12 +14657,19 @@ a.anchor-link {
 </div><div class="jp-Cell jp-CodeCell jp-Notebook-cell   ">
 <div class="jp-Cell-inputWrapper">
 <div class="jp-InputArea jp-Cell-inputArea">
-<div class="jp-InputPrompt jp-InputArea-prompt">In&nbsp;[125]:</div>
+<div class="jp-InputPrompt jp-InputArea-prompt">In&nbsp;[525]:</div>
 <div class="jp-CodeMirrorEditor jp-Editor jp-InputArea-editor" data-type="inline">
      <div class="CodeMirror cm-s-jupyter">
-<div class=" highlight hl-ipython3"><pre><span></span><span class="n">s</span> <span class="o">=</span> <span class="n">BinaryRelation</span><span class="p">(</span><span class="s2">&quot;S&quot;</span><span class="p">)</span>
-<span class="n">s</span><span class="o">.</span><span class="n">bRelation</span> <span class="o">=</span> <span class="p">{(</span><span class="mi">4</span><span class="p">,</span><span class="mi">8</span><span class="p">),(</span><span class="mi">3</span><span class="p">,</span><span class="mi">7</span><span class="p">),(</span><span class="mi">5</span><span class="p">,</span><span class="mi">7</span><span class="p">),(</span><span class="mi">3</span><span class="p">,</span><span class="mi">2</span><span class="p">)}</span>
+<div class=" highlight hl-ipython3"><pre><span></span><span class="n">A</span> <span class="o">=</span> <span class="p">{</span><span class="mi">1</span><span class="p">,</span><span class="mi">2</span><span class="p">,</span><span class="mi">3</span><span class="p">,</span><span class="mi">4</span><span class="p">,</span><span class="mi">5</span><span class="p">}</span> 
+<span class="n">B</span> <span class="o">=</span> <span class="p">{</span><span class="mi">1</span><span class="p">,</span><span class="mi">2</span><span class="p">,</span><span class="mi">3</span><span class="p">,</span><span class="mi">4</span><span class="p">,</span><span class="mi">5</span><span class="p">}</span>
+<span class="n">s</span> <span class="o">=</span> <span class="n">BinaryRelation</span><span class="p">(</span><span class="n">A</span><span class="p">,</span><span class="n">B</span><span class="p">,</span><span class="s2">&quot;S(A→B)&quot;</span><span class="p">)</span>
+<span class="n">s</span><span class="o">.</span><span class="n">bRelation</span> <span class="o">=</span> <span class="p">{(</span><span class="mi">3</span><span class="p">,</span><span class="mi">3</span><span class="p">),(</span><span class="mi">2</span><span class="p">,</span><span class="mi">5</span><span class="p">),(</span><span class="mi">2</span><span class="p">,</span><span class="mi">4</span><span class="p">),(</span><span class="mi">3</span><span class="p">,</span><span class="mi">2</span><span class="p">),(</span><span class="mi">4</span><span class="p">,</span><span class="mi">1</span><span class="p">)}</span>
+
 <span class="nb">print</span><span class="p">(</span><span class="n">s</span><span class="p">)</span>
+
+<span class="n">g</span> <span class="o">=</span> <span class="n">makeGraph</span><span class="p">(</span><span class="n">s</span><span class="p">,</span><span class="s2">&quot;graph_03&quot;</span><span class="p">)</span>
+<span class="n">g</span><span class="o">.</span><span class="n">view</span><span class="p">()</span>
+<span class="n">IFrame</span><span class="p">(</span><span class="s2">&quot;graph_03.gv.pdf&quot;</span><span class="p">,</span> <span class="n">width</span><span class="o">=</span><span class="mi">400</span><span class="p">,</span> <span class="n">height</span><span class="o">=</span><span class="mi">800</span><span class="p">)</span>
 </pre></div>
 
      </div>
@@ -14545,29 +14689,76 @@ a.anchor-link {
 
 
 <div class="jp-RenderedText jp-OutputArea-output" data-mime-type="text/plain">
-<pre>S = {(3, 7), (3, 2), (5, 7), (4, 8)}
-   8, 2, 7
-3 [0, 1, 1]
-4 [1, 0, 0]
-5 [0, 0, 1]
+<pre>S(A→B) = {(2, 4), (3, 3), (3, 2), (2, 5), (4, 1)}
+   1, 2, 3, 4, 5
+1 [0, 0, 0, 0, 0]
+2 [0, 0, 0, 1, 1]
+3 [0, 1, 1, 0, 0]
+4 [1, 0, 0, 0, 0]
+5 [0, 0, 0, 0, 0]
 
 </pre>
 </div>
 </div>
 
+<div class="jp-OutputArea-child">
+
+    
+    <div class="jp-OutputPrompt jp-OutputArea-prompt">Out[525]:</div>
+
+
+
+<div class="jp-RenderedHTMLCommon jp-RenderedHTML jp-OutputArea-output jp-OutputArea-executeResult" data-mime-type="text/html">
+
+        <iframe
+            width="400"
+            height="800"
+            src="graph_03.gv.pdf"
+            frameborder="0"
+            allowfullscreen
+        ></iframe>
+        
 </div>
 
 </div>
 
+</div>
+
+</div>
+
+</div>
+<div class="jp-Cell-inputWrapper"><div class="jp-InputPrompt jp-InputArea-prompt">
+</div><div class="jp-RenderedHTMLCommon jp-RenderedMarkdown jp-MarkdownOutput " data-mime-type="text/markdown">
+<h2 id="Composition">Composition<a class="anchor-link" href="#Composition">&#182;</a></h2><p>
+Ak R je binárna relácia z množiny A do množiny B a S je binárna relácia z množiny B do množiny C, tak potom:
+</p><p>
+$$ S ∘ R = \{(a, c) |  ∃b∈B, aRb ∧ bSc\} $$
+</p><p>
+je composition binárnej relácie R a S.
+</p>
+</div>
 </div><div class="jp-Cell jp-CodeCell jp-Notebook-cell   ">
 <div class="jp-Cell-inputWrapper">
 <div class="jp-InputArea jp-Cell-inputArea">
-<div class="jp-InputPrompt jp-InputArea-prompt">In&nbsp;[126]:</div>
+<div class="jp-InputPrompt jp-InputArea-prompt">In&nbsp;[526]:</div>
 <div class="jp-CodeMirrorEditor jp-Editor jp-InputArea-editor" data-type="inline">
      <div class="CodeMirror cm-s-jupyter">
-<div class=" highlight hl-ipython3"><pre><span></span><span class="n">comp</span> <span class="o">=</span> <span class="n">b</span><span class="o">.</span><span class="n">composition</span><span class="p">(</span><span class="n">s</span><span class="p">)</span>
+<div class=" highlight hl-ipython3"><pre><span></span><span class="n">A</span> <span class="o">=</span> <span class="p">{</span><span class="mi">1</span><span class="p">,</span><span class="mi">2</span><span class="p">,</span><span class="mi">3</span><span class="p">,</span><span class="mi">4</span><span class="p">,</span><span class="mi">5</span><span class="p">}</span> 
+<span class="n">B</span> <span class="o">=</span> <span class="p">{</span><span class="mi">1</span><span class="p">,</span><span class="mi">2</span><span class="p">,</span><span class="mi">3</span><span class="p">,</span><span class="mi">4</span><span class="p">,</span><span class="mi">5</span><span class="p">}</span>
+
+<span class="n">b</span> <span class="o">=</span> <span class="n">BinaryRelation</span><span class="p">(</span><span class="n">A</span><span class="p">,</span><span class="n">B</span><span class="p">,</span><span class="s2">&quot;R(A→B)&quot;</span><span class="p">)</span>
+<span class="n">b</span><span class="o">.</span><span class="n">bRelation</span> <span class="o">=</span> <span class="p">{(</span><span class="mi">1</span><span class="p">,</span><span class="mi">3</span><span class="p">),(</span><span class="mi">2</span><span class="p">,</span><span class="mi">3</span><span class="p">),(</span><span class="mi">2</span><span class="p">,</span><span class="mi">4</span><span class="p">),(</span><span class="mi">3</span><span class="p">,</span><span class="mi">5</span><span class="p">),(</span><span class="mi">3</span><span class="p">,</span><span class="mi">2</span><span class="p">),(</span><span class="mi">3</span><span class="p">,</span><span class="mi">4</span><span class="p">),(</span><span class="mi">4</span><span class="p">,</span><span class="mi">4</span><span class="p">)}</span>
+
+<span class="n">s</span> <span class="o">=</span> <span class="n">BinaryRelation</span><span class="p">(</span><span class="n">A</span><span class="p">,</span><span class="n">B</span><span class="p">,</span><span class="s2">&quot;S(A→B)&quot;</span><span class="p">)</span>
+<span class="n">s</span><span class="o">.</span><span class="n">bRelation</span> <span class="o">=</span> <span class="p">{(</span><span class="mi">3</span><span class="p">,</span><span class="mi">3</span><span class="p">),(</span><span class="mi">2</span><span class="p">,</span><span class="mi">5</span><span class="p">),(</span><span class="mi">2</span><span class="p">,</span><span class="mi">4</span><span class="p">),(</span><span class="mi">3</span><span class="p">,</span><span class="mi">2</span><span class="p">),(</span><span class="mi">4</span><span class="p">,</span><span class="mi">1</span><span class="p">)}</span>
+
+<span class="n">comp</span> <span class="o">=</span> <span class="n">b</span><span class="o">.</span><span class="n">composition</span><span class="p">(</span><span class="n">s</span><span class="p">)</span>
 <span class="n">comp</span><span class="o">.</span><span class="n">setName</span><span class="p">(</span><span class="s2">&quot;R x S&quot;</span><span class="p">)</span>
 <span class="nb">print</span><span class="p">(</span><span class="n">comp</span><span class="p">)</span>
+
+<span class="n">g</span> <span class="o">=</span> <span class="n">makeGraph</span><span class="p">(</span><span class="n">comp</span><span class="p">,</span><span class="s2">&quot;graph_04&quot;</span><span class="p">)</span>
+<span class="n">g</span><span class="o">.</span><span class="n">view</span><span class="p">()</span>
+<span class="n">IFrame</span><span class="p">(</span><span class="s2">&quot;graph_04.gv.pdf&quot;</span><span class="p">,</span> <span class="n">width</span><span class="o">=</span><span class="mi">400</span><span class="p">,</span> <span class="n">height</span><span class="o">=</span><span class="mi">800</span><span class="p">)</span>
 </pre></div>
 
      </div>
@@ -14587,29 +14778,73 @@ a.anchor-link {
 
 
 <div class="jp-RenderedText jp-OutputArea-output" data-mime-type="text/plain">
-<pre>R x S = {(3, 8), (1, 8), (2, 7)}
-   8, 7
-1 [1, 0]
-2 [0, 1]
-3 [1, 0]
+<pre>R x S = {(1, 3), (1, 2), (2, 1), (3, 4), (3, 1), (2, 3), (2, 2), (4, 1), (3, 5)}
+   1, 2, 3, 4, 5
+1 [0, 1, 1, 0, 0]
+2 [1, 1, 1, 0, 0]
+3 [1, 0, 0, 1, 1]
+4 [1, 0, 0, 0, 0]
+5 [0, 0, 0, 0, 0]
 
 </pre>
 </div>
 </div>
 
+<div class="jp-OutputArea-child">
+
+    
+    <div class="jp-OutputPrompt jp-OutputArea-prompt">Out[526]:</div>
+
+
+
+<div class="jp-RenderedHTMLCommon jp-RenderedHTML jp-OutputArea-output jp-OutputArea-executeResult" data-mime-type="text/html">
+
+        <iframe
+            width="400"
+            height="800"
+            src="graph_04.gv.pdf"
+            frameborder="0"
+            allowfullscreen
+        ></iframe>
+        
 </div>
 
 </div>
 
+</div>
+
+</div>
+
+</div>
+<div class="jp-Cell-inputWrapper"><div class="jp-InputPrompt jp-InputArea-prompt">
+</div><div class="jp-RenderedHTMLCommon jp-RenderedMarkdown jp-MarkdownOutput " data-mime-type="text/markdown">
+<h2 id="Restriction">Restriction<a class="anchor-link" href="#Restriction">&#182;</a></h2><p>
+Ak R je binárna relácia nad množinou A a S je podmnožina A potom: 
+</p><p>
+$$ R_{|S} = \{(x, y) | xRy ∧ x ∈ S ∧ y ∈ S\} $$
+</p><p>
+je restriction R ku S nad A.
+</p>
+</div>
 </div><div class="jp-Cell jp-CodeCell jp-Notebook-cell   ">
 <div class="jp-Cell-inputWrapper">
 <div class="jp-InputArea jp-Cell-inputArea">
-<div class="jp-InputPrompt jp-InputArea-prompt">In&nbsp;[127]:</div>
+<div class="jp-InputPrompt jp-InputArea-prompt">In&nbsp;[527]:</div>
 <div class="jp-CodeMirrorEditor jp-Editor jp-InputArea-editor" data-type="inline">
      <div class="CodeMirror cm-s-jupyter">
-<div class=" highlight hl-ipython3"><pre><span></span><span class="n">conv</span> <span class="o">=</span> <span class="n">b</span><span class="o">.</span><span class="n">converse</span><span class="p">()</span>
-<span class="n">conv</span><span class="o">.</span><span class="n">setName</span><span class="p">(</span><span class="s2">&quot;RT&quot;</span><span class="p">)</span>
-<span class="nb">print</span><span class="p">(</span><span class="n">conv</span><span class="p">)</span>
+<div class=" highlight hl-ipython3"><pre><span></span><span class="n">A</span> <span class="o">=</span> <span class="p">{</span><span class="mi">1</span><span class="p">,</span><span class="mi">2</span><span class="p">,</span><span class="mi">3</span><span class="p">,</span><span class="mi">4</span><span class="p">,</span><span class="mi">5</span><span class="p">}</span> 
+
+<span class="n">b</span> <span class="o">=</span> <span class="n">BinaryRelation</span><span class="p">(</span><span class="n">A</span><span class="p">,</span><span class="n">A</span><span class="p">,</span><span class="s2">&quot;R(A-&gt;A)&quot;</span><span class="p">)</span>
+<span class="n">b</span><span class="o">.</span><span class="n">bRelation</span> <span class="o">=</span> <span class="p">{(</span><span class="mi">1</span><span class="p">,</span><span class="mi">3</span><span class="p">),(</span><span class="mi">2</span><span class="p">,</span><span class="mi">3</span><span class="p">),(</span><span class="mi">2</span><span class="p">,</span><span class="mi">4</span><span class="p">),(</span><span class="mi">3</span><span class="p">,</span><span class="mi">5</span><span class="p">),(</span><span class="mi">3</span><span class="p">,</span><span class="mi">2</span><span class="p">),(</span><span class="mi">3</span><span class="p">,</span><span class="mi">4</span><span class="p">),(</span><span class="mi">4</span><span class="p">,</span><span class="mi">4</span><span class="p">)}</span>
+
+<span class="n">s</span> <span class="o">=</span> <span class="p">{</span><span class="mi">2</span><span class="p">,</span><span class="mi">3</span><span class="p">,</span><span class="mi">5</span><span class="p">}</span>
+
+<span class="n">res</span> <span class="o">=</span> <span class="n">b</span><span class="o">.</span><span class="n">restriction</span><span class="p">(</span><span class="n">s</span><span class="p">)</span>
+<span class="n">res</span><span class="o">.</span><span class="n">setName</span><span class="p">(</span><span class="s2">&quot;restriction&quot;</span><span class="p">)</span>
+<span class="nb">print</span><span class="p">(</span><span class="n">res</span><span class="p">)</span>
+<span class="n">g</span> <span class="o">=</span> <span class="n">makeGraph</span><span class="p">(</span><span class="n">res</span><span class="p">,</span><span class="s2">&quot;graph_05&quot;</span><span class="p">)</span>
+<span class="n">g</span><span class="o">.</span><span class="n">view</span><span class="p">()</span>
+<span class="n">IFrame</span><span class="p">(</span><span class="s2">&quot;graph_05.gv.pdf&quot;</span><span class="p">,</span> <span class="n">width</span><span class="o">=</span><span class="mi">400</span><span class="p">,</span> <span class="n">height</span><span class="o">=</span><span class="mi">800</span><span class="p">)</span>
 </pre></div>
 
      </div>
@@ -14629,14 +14864,123 @@ a.anchor-link {
 
 
 <div class="jp-RenderedText jp-OutputArea-output" data-mime-type="text/plain">
-<pre>RT = {(4, 3), (7, 1), (4, 1), (5, 2)}
-   1, 2, 3
-4 [1, 0, 1]
-5 [0, 1, 0]
-7 [1, 0, 0]
+<pre>restriction = {(2, 3), (3, 2), (3, 5)}
+   1, 2, 3, 4, 5
+1 [0, 0, 0, 0, 0]
+2 [0, 0, 1, 0, 0]
+3 [0, 1, 0, 0, 1]
+4 [0, 0, 0, 0, 0]
+5 [0, 0, 0, 0, 0]
 
 </pre>
 </div>
+</div>
+
+<div class="jp-OutputArea-child">
+
+    
+    <div class="jp-OutputPrompt jp-OutputArea-prompt">Out[527]:</div>
+
+
+
+<div class="jp-RenderedHTMLCommon jp-RenderedHTML jp-OutputArea-output jp-OutputArea-executeResult" data-mime-type="text/html">
+
+        <iframe
+            width="400"
+            height="800"
+            src="graph_05.gv.pdf"
+            frameborder="0"
+            allowfullscreen
+        ></iframe>
+        
+</div>
+
+</div>
+
+</div>
+
+</div>
+
+</div>
+<div class="jp-Cell-inputWrapper"><div class="jp-InputPrompt jp-InputArea-prompt">
+</div><div class="jp-RenderedHTMLCommon jp-RenderedMarkdown jp-MarkdownOutput " data-mime-type="text/markdown">
+<h2 id="Converse">Converse<a class="anchor-link" href="#Converse">&#182;</a></h2><p>
+Ak R je binárna relácia z množiny A do množiny B potom:
+</p><p>
+$$ R^T = \{(b, a) | a R b\}  $$
+</p><p>
+je converse R.
+</p>
+</div>
+</div><div class="jp-Cell jp-CodeCell jp-Notebook-cell   ">
+<div class="jp-Cell-inputWrapper">
+<div class="jp-InputArea jp-Cell-inputArea">
+<div class="jp-InputPrompt jp-InputArea-prompt">In&nbsp;[528]:</div>
+<div class="jp-CodeMirrorEditor jp-Editor jp-InputArea-editor" data-type="inline">
+     <div class="CodeMirror cm-s-jupyter">
+<div class=" highlight hl-ipython3"><pre><span></span><span class="n">A</span> <span class="o">=</span> <span class="p">{</span><span class="mi">1</span><span class="p">,</span><span class="mi">2</span><span class="p">,</span><span class="mi">3</span><span class="p">,</span><span class="mi">4</span><span class="p">,</span><span class="mi">5</span><span class="p">}</span> 
+<span class="n">B</span> <span class="o">=</span> <span class="p">{</span><span class="mi">1</span><span class="p">,</span><span class="mi">2</span><span class="p">,</span><span class="mi">3</span><span class="p">,</span><span class="mi">4</span><span class="p">,</span><span class="mi">5</span><span class="p">}</span>
+
+<span class="n">b</span> <span class="o">=</span> <span class="n">BinaryRelation</span><span class="p">(</span><span class="n">A</span><span class="p">,</span><span class="n">B</span><span class="p">,</span><span class="s2">&quot;R(A-&gt;B)&quot;</span><span class="p">)</span>
+<span class="n">b</span><span class="o">.</span><span class="n">bRelation</span> <span class="o">=</span> <span class="p">{(</span><span class="mi">1</span><span class="p">,</span><span class="mi">3</span><span class="p">),(</span><span class="mi">2</span><span class="p">,</span><span class="mi">3</span><span class="p">),(</span><span class="mi">2</span><span class="p">,</span><span class="mi">4</span><span class="p">),(</span><span class="mi">5</span><span class="p">,</span><span class="mi">2</span><span class="p">),(</span><span class="mi">3</span><span class="p">,</span><span class="mi">5</span><span class="p">),(</span><span class="mi">4</span><span class="p">,</span><span class="mi">1</span><span class="p">)}</span>
+
+<span class="n">conv</span> <span class="o">=</span> <span class="n">b</span><span class="o">.</span><span class="n">converse</span><span class="p">()</span>
+<span class="n">conv</span><span class="o">.</span><span class="n">setName</span><span class="p">(</span><span class="s2">&quot;converse&quot;</span><span class="p">)</span>
+
+<span class="nb">print</span><span class="p">(</span><span class="n">conv</span><span class="p">)</span>
+<span class="n">g</span> <span class="o">=</span> <span class="n">makeGraph</span><span class="p">(</span><span class="n">conv</span><span class="p">,</span><span class="s2">&quot;graph_06&quot;</span><span class="p">)</span>
+<span class="n">g</span><span class="o">.</span><span class="n">view</span><span class="p">()</span>
+<span class="n">IFrame</span><span class="p">(</span><span class="s2">&quot;graph_06.gv.pdf&quot;</span><span class="p">,</span> <span class="n">width</span><span class="o">=</span><span class="mi">400</span><span class="p">,</span> <span class="n">height</span><span class="o">=</span><span class="mi">800</span><span class="p">)</span>
+</pre></div>
+
+     </div>
+</div>
+</div>
+</div>
+
+<div class="jp-Cell-outputWrapper">
+
+
+<div class="jp-OutputArea jp-Cell-outputArea">
+
+<div class="jp-OutputArea-child">
+
+    
+    <div class="jp-OutputPrompt jp-OutputArea-prompt"></div>
+
+
+<div class="jp-RenderedText jp-OutputArea-output" data-mime-type="text/plain">
+<pre>converse = {(3, 1), (1, 4), (4, 2), (5, 3), (3, 2), (2, 5)}
+   1, 2, 3, 4, 5
+1 [0, 0, 0, 1, 0]
+2 [0, 0, 0, 0, 1]
+3 [1, 1, 0, 0, 0]
+4 [0, 1, 0, 0, 0]
+5 [0, 0, 1, 0, 0]
+
+</pre>
+</div>
+</div>
+
+<div class="jp-OutputArea-child">
+
+    
+    <div class="jp-OutputPrompt jp-OutputArea-prompt">Out[528]:</div>
+
+
+
+<div class="jp-RenderedHTMLCommon jp-RenderedHTML jp-OutputArea-output jp-OutputArea-executeResult" data-mime-type="text/html">
+
+        <iframe
+            width="400"
+            height="800"
+            src="graph_06.gv.pdf"
+            frameborder="0"
+            allowfullscreen
+        ></iframe>
+        
+</div>
+
 </div>
 
 </div>
