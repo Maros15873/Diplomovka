@@ -1,0 +1,30 @@
+digraph graph_01 {
+	node [shape=plaintext]
+	 label="R(A→B)"
+	 rankdir=LR;
+	subgraph cluster_dom {
+		node [shape=circle]
+		 label="A"
+		1
+		2
+		3
+		4
+		5
+	}
+	subgraph cluster_rng {
+		node [shape=circle]
+		 label="B"
+		"1R" [label=1]
+		"2R" [label=2]
+		"3R" [label=3]
+		"4R" [label=4]
+		"5R" [label=5]
+	}
+	4 -> "4R"
+	2 -> "4R"
+	3 -> "4R"
+	2 -> "3R"
+	3 -> "2R"
+	1 -> "3R"
+	3 -> "5R"
+}
