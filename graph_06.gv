@@ -1,5 +1,5 @@
 digraph graph_06 {
-	node [shape=plaintext]
+	node [shape=circle]
 	 label="converse"
 	 rankdir=LR;
 	subgraph cluster_dom {

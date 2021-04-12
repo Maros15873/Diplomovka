@@ -1,5 +1,5 @@
 digraph graph_02 {
-	node [shape=plaintext]
+	node [shape=circle]
 	 label="R comlement"
 	 rankdir=LR;
 	subgraph cluster_dom {
