@@ -1,0 +1,4 @@
+graph matrix_04 {
+	node [shape=none]
+	tab [label=<<TABLE><TR><TD>left</TD><TD>right</TD></TR></TABLE>>]
+}

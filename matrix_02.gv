@@ -1,0 +1,9 @@
+graph matrix_02 {
+	tab [label="
+        <<TABLE>
+           <TR>
+            <TD>left</TD>
+            <TD>right</TD>
+           </TR>
+        </TABLE>>"]
+}
