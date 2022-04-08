@@ -1,4 +1,0 @@
-graph matrix_08 {
-	node [shape=none]
-	tab [label=<<TABLE><TR><TD border-style="dotted">1</TD><TD>0</TD><TD>0</TD><TD>1</TD></TR><TR><TD border-style="dotted">2</TD><TD>0</TD><TD>0</TD><TD>1</TD></TR><TR><TD border-style="dotted">3</TD><TD>0</TD><TD>0</TD><TD>0</TD></TR></TABLE>>]
-}

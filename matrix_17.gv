@@ -1,4 +1,0 @@
-graph matrix_17 {
-	node [shape=none]
-	tab [label=<<TABLE color="white"><TR><TD color="white"></TD><TD color="white">1</TD><TD color="white">2</TD><TD color="white">3</TD><TD color="white">4</TD></TR><TR><TD color="white">1</TD><TD color="black">0</TD><TD color="black">0</TD><TD color="black">1</TD><TD color="black">1</TD></TR><TR><TD color="white">2</TD><TD color="black">0</TD><TD color="black">0</TD><TD color="black">1</TD><TD color="black">1</TD></TR><TR><TD color="white">3</TD><TD color="black">0</TD><TD color="black">0</TD><TD color="black">0</TD><TD color="black">0</TD></TR></TABLE>>]
-}

@@ -1,4 +1,0 @@
-graph matrix_06 {
-	node [shape=none]
-	tab [label=<<TABLE><TR><TD>my</TD><TD>theft</TD></TR></TABLE>>]
-}
